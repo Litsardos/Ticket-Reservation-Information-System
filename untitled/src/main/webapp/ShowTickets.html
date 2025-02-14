@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Διαθέσιμα εισητήρια</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            text-align: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #ffffff; /* Μαύρο */
+            font-weight: bold;
+            font-size: 36px;
+            margin: 60px 0;
+        }
+
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin-bottom: 50px;
+        }
+
+        .image-container .image-item {
+            background-color: #fff;
+            border: solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .image-container .image-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            margin: 0; /* Αφαίρεση τυχόν περιθωρίων */
+            display: block;
+        }
+
+        .image-container .error-message {
+            font-size: 14px;
+            color: red;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        /* Εξασφαλίζουμε ότι τα εισιτήρια είναι 2 ανά γραμμή και σε μικρότερες οθόνες */
+        @media (max-width: 768px) {
+            .image-container {
+                grid-template-columns: 1fr; /* Μία στήλη για μικρές οθόνες */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Διαθέσιμα Εισητήρια</h1>
+
+<div class="image-container" id="imageContainer">
+</div>
+
+<script>
+    async function loadImages() {
+        const images = []; // Επαναρχικοποιούμε τη λίστα των εικόνων
+        let i = 1; // Ξεκινάμε από την πρώτη εικόνα
+        const container = document.getElementById('imageContainer');
+        container.innerHTML = ''; // Καθαρίζουμε τον container από προηγούμενες εικόνες
+        while (true) {
+
+            const imageSrc = `tickets/image${i}.jpg`;
+            const exists = await doesImageExist(imageSrc);
+
+            if (exists) {
+                console.log(imageSrc);
+                images.push(imageSrc); // Προσθέτουμε μόνο τις εικόνες που υπάρχουν
+                i++;
+            } else {
+                break; // Σταματάμε όταν δεν βρεθεί εικόνα
+            }
+        }
+
+        console.log("Συνολικές εικόνες που βρέθηκαν: " + images.length);
+
+        displayImages(images);
+    }
+
+    function displayImages(images) {
+        const container = document.getElementById('imageContainer');
+        container.innerHTML = '';
+
+        images.forEach((imageSrc) => {
+            const imgElement = document.createElement('img');
+            imgElement.src = imageSrc;
+
+            const imageItem = document.createElement('div');
+            imageItem.className = 'image-item';
+
+            // Προσθήκη γεγονότος κλικ για κάθε εικόνα
+            imageItem.addEventListener('click', function () {
+                const imageName = imageSrc.split('/').pop().split('?')[0];
+                window.location.href = `Book_ticket.html?image=${encodeURIComponent(imageSrc)}&imageName=${encodeURIComponent(imageName)}`;
+            });
+
+            // Προσθέτουμε την εικόνα στο container
+            imageItem.appendChild(imgElement);
+            container.appendChild(imageItem);
+        });
+    }
+
+    async function doesImageExist(imageSrc) {
+        return new Promise((resolve) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('HEAD', imageSrc, true); // Χρησιμοποιούμε HEAD για να ελέγξουμε αν υπάρχει το αρχείο
+            xhr.onload = () => resolve(xhr.status === 200); // Ελέγχουμε τον κωδικό κατάστασης
+            xhr.onerror = () => resolve(false); // Επιστρέφουμε false αν υπάρχει σφάλμα
+            xhr.send();
+        });
+    }
+
+    loadImages();
+
+</script>
+
+</body>
+</html>

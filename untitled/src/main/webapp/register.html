@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Φόρμα Εγγραφής</title>
+  <script src="checks.js"></script>
+  <style>
+    /* General Page Style */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff; /* Light blue background */
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080; /* Navy blue */
+      margin-top: 20px;
+    }
+
+    form {
+      background-color: #ffffff; /* White form background */
+      border: 1px solid #cce7ff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #004080; /* Navy blue for labels */
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #cce7ff;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #007bff; /* Bright blue on focus */
+      box-shadow: 0 0 4px #b3d9ff;
+    }
+
+    button {
+      width: auto;
+      background-color: #004080; /* Navy blue button */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #007bff; /* Bright blue hover */
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin-right: 10px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Small Footer Text */
+    small {
+      display: block;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h2>Φόρμα Εγγραφής Χρήστη</h2>
+
+<form method="POST" action="/untitled_war_exploded/NewServlet">
+  <!-- Username -->
+  <label for="username">Username:</label>
+  <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          pattern="[A-Za-z0-9]{5,}"
+          title="Εισάγετε τουλάχιστον 8 χαρακτήρες (γράμματα ή αριθμούς)"
+  />
+
+  <!-- Email -->
+  <label for="email">Email:</label>
+  <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          title="Εισάγετε μια έγκυρη διεύθυνση email"
+  />
+
+  <!-- Password -->
+  <label for="password">Κωδικός:</label>
+  <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,16}"
+          title="Ο κωδικός πρέπει να περιέχει τουλάχιστον έναν αριθμό, ένα κεφαλαίο και ένα πεζό γράμμα, και έναν ειδικό χαρακτήρα, με μήκος 8-16 χαρακτήρες"
+  />
+  <button type="button" onclick="togglePasswordVisibility('password')">
+    Προβολή/Απόκρυψη
+  </button>
+
+  <!-- Confirm Password -->
+  <label for="confirm-password">Επαλήθευση Κωδικού:</label>
+  <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          required
+          title="Επαληθεύστε τον κωδικό σας"
+  />
+  <button
+          type="button"
+          onclick="togglePasswordVisibility('confirm-password')"
+  >
+    Προβολή/Απόκρυψη
+  </button>
+
+  <!-- Name -->
+  <label for="firstname">Όνομα:</label>
+  <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          required
+          pattern="[^0-9]{3,30}"
+          title="Μόνο γράμματα, 3-30 χαρακτήρες"
+  />
+
+  <label for="lastname">Επώνυμο:</label>
+  <input
+          type="text"
+          id="lastname"
+          name="lastname"
+          required
+          pattern="[^0-9]{3,30}"
+          title="Μόνο γράμματα, 3-30 χαρακτήρες"
+  />
+
+  <!-- Phone -->
+  <label for="telephone">Τηλέφωνο:</label>
+  <input
+          type="text"
+          id="telephone"
+          name="telephone"
+          required
+          pattern="[0-9]{10}"
+          title="10 αριθμοί"
+  />
+
+  <label for="card number">Card number:</label>
+  <input
+          type="text"
+          id="card number"
+          name="card number"
+          required
+          pattern="[0-9]{16}"
+          title="16 αριθμοί"
+  />
+
+  <label for="CVV">CVV:</label>
+  <input
+          type="text"
+          id="CVV"
+          name="CVV"
+          required
+          pattern="[0-9]{3}"
+          title="3 αριθμοί"
+  />
+
+  <label for="expiry date">Expiry date:</label>
+  <input
+          type="text"
+          id="expiry date"
+          name="expiry date"
+          required
+          pattern="\d{1,2}/\d{1,2}"
+          title="**/**"
+  />
+
+  <label for="Balance">Balance:</label>
+  <input
+          type="text"
+          id="Balance"
+          name="Balance"
+          required
+          pattern="[0-9]{1,}"
+          title="Εισάγεται τουλάχιστον έναν αριθμό"
+  />
+
+  <input type="checkbox" id="terms" name="terms" required />
+  <label for="terms">Συμφωνώ με τους όρους και τις προϋποθέσεις</label>
+
+  <button type="submit">Υποβολή</button>
+</form>
+
+<script>
+  function togglePasswordVisibility(fieldId) {
+    const field = document.getElementById(fieldId);
+    field.type = field.type === "password" ? "text" : "password";
+  }
+</script>
+</body>
+</html>

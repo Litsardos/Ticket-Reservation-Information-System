@@ -1,0 +1,35 @@
+body {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    font-family: 'Arial', sans-serif;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 350px;
+    max-width: 90%;
+}
+
+.card h1 {
+    font-size: 2rem;
+    color: #2d3436;
+}
+
+.card p {
+    color: #636e72;
+}
+
+.card .btn {
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0984e3;
+    border-color: #0984e3;
+}
+
+.btn-secondary:hover {
+    background-color: #dfe6e9;
+    border-color: #dfe6e9;
+    color: #2d3436;
+}

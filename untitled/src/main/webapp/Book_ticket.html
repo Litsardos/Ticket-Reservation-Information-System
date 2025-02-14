@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Επιλεγμένο Εισιτήριο</title>
+  <style>
+    /* Γενικές ρυθμίσεις για τη σελίδα */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    /* Κεντρικό container για την εικόνα */
+    .image-container {
+      width: 90%;
+      max-width: 1000px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden; /* Εξασφαλίζει ότι η εικόνα δεν ξεφεύγει από τα όρια */
+    }
+
+    #image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    /* Στυλ για τον έλεγχο και το κουμπί */
+    .controls-container {
+      text-align: center;
+      margin-top: 30px;
+      width: 90%;
+      max-width: 700px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #6a11cb;
+    }
+
+    .quantity-input-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .quantity-input {
+      width: 80px;
+      height: 40px;
+      font-size: 18px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+
+    .book-button {
+      background-color: #6a11cb;
+      color: white;
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-button:hover {
+      background-color: #2575fc;
+    }
+
+    /* Στυλ για τα μηνύματα σφάλματος */
+    .error-message {
+      color: red;
+      font-size: 16px;
+      display: none;
+      margin-top: 10px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .controls-container {
+        width: 100%;
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .book-button {
+        font-size: 18px;
+        padding: 12px 30px;
+      }
+
+      .quantity-input {
+        width: 60px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Εικόνα σε ξεχωριστό container -->
+<div class="image-container">
+  <img id="image" src="" alt="Η εικόνα που επιλέχθηκε">
+</div>
+
+<!-- Κεντρικό πεδίο για την ποσότητα και το κουμπί κράτησης -->
+<div class="controls-container">
+  <h1>Επιλέξτε την ποσότητα εισιτηρίων</h1>
+  <form action="BookTicket" method="post">
+    <div class="quantity-input-container">
+      <input type="number" id="amount" name="amount" class="quantity-input" placeholder="Ποσότητα" required>
+    </div>
+    <button type="submit" class="book-button">Κράτηση</button>
+  </form>
+
+  <!-- Μήνυμα σφάλματος (αν η ποσότητα είναι μη έγκυρη) -->
+  <div class="error-message" id="errorMessage">Παρακαλώ εισάγετε έγκυρη ποσότητα.</div>
+</div>
+<script>
+  window.onload = function() {
+    const imgElement = document.getElementById('image');
+
+    // Παίρνουμε τις παραμέτρους από το URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const imageParam = urlParams.get('image'); // Παίρνουμε την τιμή της παραμέτρου 'image'
+    const imageName = urlParams.get('imageName'); // Παίρνουμε το όνομα της εικόνας από το URL
+
+    if (imageParam) {
+      // Αποκωδικοποιούμε την URL της εικόνας
+      const imageUrl = decodeURIComponent(imageParam);
+      imgElement.src = imageUrl;
+    } else {
+      imgElement.alt = 'Δεν βρέθηκε εικόνα';
+    }
+
+    // Αποθηκεύουμε το όνομα της εικόνας στα cookies
+    if (imageName) {
+      document.cookie = `imageName=${encodeURIComponent(imageName)}; path=/; max-age=86400`; // Cookie που ισχύει για 1 ημέρα
+    }
+  };
+</script>
+
+</body>
+</html>

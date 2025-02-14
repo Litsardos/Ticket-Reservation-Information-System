@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Δημιουργία Νέας Εκδήλωσης</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .card {
+      background: #ffffff;
+      color: #333;
+      border-radius: 20px;
+      padding: 40px; /* Ελαφρώς μεγαλύτερο padding */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 600px; /* Αύξηση του πλάτους */
+      width: 100%; /* Προσαρμογή σε μικρότερες οθόνες */
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #6a11cb;
+    }
+
+    .btn-primary, .btn-secondary {
+      border: none;
+      font-size: 1.1rem;
+      padding: 12px 25px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1rem;
+      color: #666;
+    }
+    .form-control:last-of-type {
+      margin-bottom: 20px; /* Αυξήσαμε το margin-bottom για να απομακρύνουμε το πεδίο από το κουμπί */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Create New Event Form -->
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card">
+    <h1 class="text-center text-primary mb-4">Δημιουργία Νέας Εκδήλωσης</h1>
+    <form method="POST" action="/untitled_war_exploded/CreateNewEvent">
+      <div class="d-flex justify-content-around mt-4">
+        <label for="eventName" class="form-label">Όνομα Εκδήλωσης</label>
+        <input type="text" name="eventName" class="form-control" id="eventName" required>
+      </div>
+      <div class="d-flex justify-content-around mt-4">
+        <label for="eventDate" class="form-label">Ημερομηνία Εκδήλωσης</label>
+        <input type="date" name="eventDate" class="form-control" id="eventDate" required>
+      </div>
+      <div class="d-flex justify-content-around mt-4">
+        <label for="eventLocation" class="form-label">Τοποθεσία Εκδήλωσης</label>
+        <input type="text" name="eventLocation" class="form-control" id="eventLocation" required>
+      </div>
+      <div class="d-flex justify-content-around mt-4">
+        <label for="eventTime" class="form-label">Ώρα Εκδήλωσης</label>
+        <input type="time" name="eventTime" class="form-control" id="eventTime" required>
+      </div>
+      <div class="d-flex justify-content-around mt-4">
+        <label for="eventType" class="form-label">Τύπος Εκδήλωσης</label>
+        <input type="text" name="eventType" class="form-control" id="eventType" required>
+      </div>
+      <div class="d-flex justify-content-around mt-4">
+        <label for="eventCapacity" class="form-label">Χωρητικότητα Εκδήλωσης</label>
+        <input type="number" name="eventCapacity" class="form-control" id="eventCapacity" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Δημιουργία Εκδήλωσης</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Συνάρτηση για να διαβάζει τα cookies
+  function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + '=')) {
+        return cookie.substring(name.length + 1);
+      }
+    }
+    return null; // Αν δεν βρεθεί το cookie
+  }
+
+  // Ενημέρωση του περιεχομένου στη σελίδα
+  document.addEventListener('DOMContentLoaded', () => {
+    const userName = getCookie('name') || 'Άγνωστο';
+    const userId = getCookie('userId') || 'Άγνωστο';
+
+    document.getElementById('userName').textContent = userName;
+    document.getElementById('userId').textContent = userId;
+  });
+</script>
+</body>
+</html>

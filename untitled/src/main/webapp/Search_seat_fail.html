@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Εισιτήριο Μη Διαθέσιμο</title>
+    <style>
+        /* Στυλ για την κεντρική περιοχή */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* Στυλ για το μήνυμα */
+        .message {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Στυλ για το κουμπί */
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Μήνυμα ότι το εισιτήριο δεν υπάρχει -->
+<div class="message">
+    Δεν υπάρχει το εισιτήριο που ζητήσατε.
+</div>
+
+<!-- Κουμπί για να δει τα διαθέσιμα εισιτήρια -->
+<a href="ShowTickets.html"> <!-- Αντικαταστήστε το 'available_tickets.html' με τη σελίδα των διαθέσιμων εισιτηρίων -->
+    <button class="btn">Δείτε Τα Διαθέσιμα Εισιτήρια</button>
+</a>
+
+</body>
+</html>

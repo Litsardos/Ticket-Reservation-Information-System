@@ -1,0 +1,100 @@
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>MyServlet</servlet-name>
+    <servlet-class>com.example.MyServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+  <servlet-name>Login_Check</servlet-name>
+  <servlet-class>com.example.DoPostServlets.Login_Check</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>Login_check_admin</servlet-name>
+    <servlet-class>com.example.DoPostServlets.Login_check_admin</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>NewEvent</servlet-name>
+    <servlet-class>com.example.DoPostServlets.CreateNewEvent</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ShowTickets</servlet-name>
+    <servlet-class>com.example.DoPostServlets.ShowTickets</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>BookTicket</servlet-name>
+    <servlet-class>com.example.DoPostServlets.BookTicket</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>NewServlet</servlet-name>
+    <servlet-class>com.example.DoPostServlets.NewServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>Cancelevent</servlet-name>
+    <servlet-class>com.example.DoPostServlets.Cancelevent</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>SearchSeats</servlet-name>
+    <servlet-class>com.example.DoPostServlets.Search_seat</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Cancelevent</servlet-name>
+    <url-pattern>/CancelEventServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Login_check_admin</servlet-name>
+    <url-pattern>/Login_check_admin</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>BookTicket</servlet-name>
+    <url-pattern>/BookTicket</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ShowTickets</servlet-name>
+    <url-pattern>/show-tickets</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>NewEvent</servlet-name>
+    <url-pattern>/CreateNewEvent</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Login_Check</servlet-name>
+    <url-pattern>/Login_Check</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>SearchSeats</servlet-name>
+    <url-pattern>/SearchSeats</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>MyServlet</servlet-name>
+    <url-pattern>/deadlink</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>NewServlet</servlet-name>
+    <url-pattern>/NewServlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+
+

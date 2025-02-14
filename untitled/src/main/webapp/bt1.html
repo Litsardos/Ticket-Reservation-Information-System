@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container mt-5">
+    <form id="autoSubmitForm" method="POST" action="/untitled_war_exploded/BookTicket">
+        <input type="hidden" name="amount" value="10">  <!-- Παράδειγμα ποσού -->
+        <button type="submit" style="display: none;">SHOW</button> <!-- Κρυφό κουμπί -->
+    </form>
+</div>
+<script>
+  // Η συνάρτηση που υποβάλλει αυτόματα τη φόρμα
+  window.onload = function() {
+      location.reload ( ) ;
+    // Υποβολή της φόρμας μόλις η σελίδα φορτώσει
+    document.getElementById('autoSubmitForm').submit();
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .content-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div
+            class="container-fluid d-flex justify-content-between align-items-center"
+    >
+        <!-- Left Section: User Info and Balance -->
+        <div class="d-flex align-items-center">
+            <div class="text-white me-4">
+                <span>User Name: <strong id="userName">Loading...</strong></span><br />
+                <span>User ID: <strong id="userId">Loading...</strong></span>
+                <span>Balance: <strong id="userBalance">Loading...</strong></span>
+            </div>
+        </div>
+
+        <!-- Center Section: Brand Name -->
+        <a class="navbar-brand text-white ms-auto me-auto" href="#">Event User Management</a>
+
+        <!-- Navbar Toggler for small screens -->
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="search_seats.html">Search Seats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sh1.html">Show Available Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cancel_reservation.html"
+                    >Cancel Reservation</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-dark" href="login_screen.html">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">User Dashboard</h2>
+
+    <!-- System Information Section -->
+    <div class="row g-4">
+        <!-- Section 1: Available and Reserved Seats -->
+        <div class="col-md-6">
+            <div class="content-section">
+                <h5 class="section-title">Available and Reserved Seats</h5>
+                <p>
+                    View the status of available and reserved seats for each event.
+                </p>
+                <button
+                        class="btn btn-sm btn-primary"
+                        onclick="location.href='available_reserved_seats.html'"
+                >
+                    Show More
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 2: Event Revenue -->
+        <div class="col-md-6">
+            <div class="content-section">
+                <h5 class="section-title">Revenue from Sales</h5>
+                <p>Track the revenue generated from each event.</p>
+                <button
+                        class="btn btn-sm btn-primary"
+                        onclick="location.href='event_revenue.html'"
+                >
+                    Show More
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 3: Most Popular Event -->
+        <div class="col-md-6">
+            <div class="content-section">
+                <h5 class="section-title">Most Popular Event</h5>
+                <p>Check the event with the highest number of reservations.</p>
+                <button
+                        class="btn btn-sm btn-primary"
+                        onclick="location.href='popular_event.html'"
+                >
+                    Show More
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 4: Event with Highest Revenue -->
+    <!-- Section 5: Reservations by Time Period -->
+    <div class="col-md-6">
+        <div class="content-section">
+            <h5 class="section-title">Reservations by Time Period</h5>
+            <p>View reservations for specific time periods.</p>
+            <button
+                    class="btn btn-sm btn-primary"
+                    onclick="location.href='reservations_time_period.html'"
+            >
+                Show More
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 6: Total VIP and General Ticket Revenue -->
+    <div class="col-md-6">
+        <div class="content-section">
+            <h5 class="section-title">VIP and General Ticket Sales</h5>
+            <p>Check total revenue from VIP and general tickets.</p>
+            <button
+                    class="btn btn-sm btn-primary"
+                    onclick="location.href='ticket_sales.html'"
+            >
+                Show More
+            </button>
+        </div>
+    </div>
+
+        <div class="col-md-6">
+            <h2>Top Revenue Event</h2>
+            <p>Find the event with the highest revenue in a given time range.</p>
+
+            <!-- Input fields for firstdate and seconddate -->
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="firstdate" class="form-label">Start Date</label>
+                    <input type="text" id="firstdate" class="form-control" placeholder="YYYY-DD-MM"/>
+                </div>
+                <div class="col">
+                    <label for="seconddate" class="form-label">End Date</label>
+                    <input type="text" id="seconddate" class="form-control" placeholder="YYYY-DD-MM" />
+                </div>
+            </div>
+            <button
+                    class="btn btn-sm btn-primary" id="redirectButton"
+            >
+                Show More
+            </button>
+        </div>
+    </div>
+
+
+    </div>
+<script>
+    document.getElementById('redirectButton').addEventListener('click', function () {
+        // Get the values from the input fields
+        const firstDate = document.getElementById('firstdate').value;
+        const secondDate = document.getElementById('seconddate').value;
+        console.log(firstDate);
+
+        // Validate that both fields are filled
+        if (!firstDate || !secondDate) {
+            alert('Please fill in both dates.');
+            return;
+        }
+
+        // Redirect to the target page with the query parameters
+        const targetUrl = `most_income_event?firstdate=${encodeURIComponent(firstDate)}&seconddate=${encodeURIComponent(secondDate)}`;
+        window.location.href = targetUrl;
+    });
+
+    document.getElementById('firstdate').addEventListener('input', function(e) {
+        let value = e.target.value;
+
+        // Remove all non-numeric characters
+        value = value.replace(/\D/g, '');
+
+        // Format the value as YYYY-DD-MM
+        if (value.length >= 4) {
+            value = value.substring(0, 4) + '-' + value.substring(4, 6) + '-' + value.substring(6, 8);
+        }
+
+        // Update the input field with the new value
+        e.target.value = value;
+    });
+    document.getElementById('seconddate').addEventListener('input', function(e) {
+        let value = e.target.value;
+
+        // Remove all non-numeric characters
+        value = value.replace(/\D/g, '');
+
+        // Format the value as YYYY-DD-MM
+        if (value.length >= 4) {
+            value = value.substring(0, 4) + '-' + value.substring(4, 6) + '-' + value.substring(6, 8);
+        }
+
+        // Update the input field with the new value
+        e.target.value = value;
+    });
+    // Συνάρτηση για να διαβάζει τα cookies
+    function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Ελέγχει αν το cookie ξεκινάει με το όνομα που ψάχνουμε
+            if (cookie.startsWith(name + '=')) {
+                return cookie.substring(name.length + 1);
+            }
+        }
+        return null; // Αν δεν βρεθεί το cookie
+    }
+
+    // Ενημέρωση του περιεχομένου στη σελίδα
+    document.addEventListener('DOMContentLoaded', () => {
+        // Παίρνουμε τα δεδομένα από τα cookies
+        const userName = getCookie('name') || 'Unknown';
+        const userId = getCookie('userId') || 'Unknown';
+        const userBalance = getCookie('balance') || 'Unknown';
+
+        // Ενημερώνουμε τα στοιχεία HTML
+        document.getElementById('userName').textContent = userName;
+        document.getElementById('userId').textContent = userId;
+        document.getElementById('userBalance').textContent = `$${userBalance}`;
+    });
+</script>
+</body>
+</html>
